@@ -23,6 +23,7 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  // eslint-disable-next-line no-unused-vars
   constructor(private taskService: TaskService) {}
 
   get tasks$() {

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -27,25 +27,30 @@ import { Task } from '../task.model';
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.css'
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnInit {
   @Output() taskCreated = new EventEmitter<Task>();
+  
+  taskForm!: FormGroup;
 
+  // eslint-disable-next-line no-unused-vars
   constructor(private fb: FormBuilder) {}
 
-  get taskForm() {
-    return this.fb.group({
+  ngOnInit(): void {
+    this.taskForm = this.fb.group({
       title: ['', Validators.required],
       dueDate: [null]
     });
   }
 
   // PUBLIC_INTERFACE
-  addTask() {
-    const form = this.taskForm;
-    if (form.valid) {
-      const { title, dueDate } = form.value;
+  addTask(): void {
+    /**
+     * Adds a new task when form is submitted
+     */
+    if (this.taskForm.valid) {
+      const { title, dueDate } = this.taskForm.value;
       this.taskCreated.emit({ title: title!, completed: false, dueDate });
-      form.reset();
+      this.taskForm.reset();
     }
   }
 }

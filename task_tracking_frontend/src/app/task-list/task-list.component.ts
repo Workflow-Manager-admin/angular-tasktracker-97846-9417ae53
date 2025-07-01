@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../task.model';
-import { CommonModule, DatePipe, AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,9 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatCheckboxModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule,
-    DatePipe,
-    AsyncPipe
+    MatButtonModule
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
