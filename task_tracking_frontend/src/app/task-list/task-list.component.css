@@ -1,0 +1,10 @@
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+mat-list {
+  width: 100%;
+}
+mat-list-item {
+  align-items: center;
+}

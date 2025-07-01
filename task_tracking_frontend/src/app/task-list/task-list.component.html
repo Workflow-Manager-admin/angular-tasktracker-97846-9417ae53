@@ -1,0 +1,16 @@
+<mat-list>
+  <mat-list-item *ngFor="let task of tasks; let i = index">
+    <mat-checkbox [checked]="task.completed" (change)="onToggleComplete(i)">
+    </mat-checkbox>
+    <span [class.completed]="task.completed" style="flex:1;margin-left:8px">
+      {{ task.title }}
+      <span *ngIf="task.dueDate"> - Due: {{ task.dueDate | date:'mediumDate' }}</span>
+    </span>
+    <button mat-icon-button color="warn" (click)="onDelete(i)" aria-label="Delete Task">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+  <mat-list-item *ngIf="tasks?.length === 0">
+    <span>No tasks yet.</span>
+  </mat-list-item>
+</mat-list>
