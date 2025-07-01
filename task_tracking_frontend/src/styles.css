@@ -1,4 +1,254 @@
-/* You can add global styles to this file, and also import other style files */
+/* Custom Angular Material theme */
+@import './theme.scss';
 
-/* Angular Material prebuilt theme (can later use custom palette as per project style guide) */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* Global Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-spacing {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Card and Surface Styles */
+.mat-mdc-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+}
+
+.mat-mdc-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Field Improvements */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
+  margin-top: 0.5rem;
+}
+
+/* Button Improvements */
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
+  border-radius: 8px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.mat-mdc-icon-button {
+  transition: background-color 0.3s ease;
+}
+
+/* Toolbar Improvements */
+.mat-toolbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.mat-toolbar h1,
+.mat-toolbar .mat-toolbar-title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* List Improvements */
+.mat-mdc-list {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-mdc-list-item {
+  border-bottom: 1px solid var(--divider-color);
+  transition: background-color 0.3s ease;
+  min-height: 64px;
+  padding: 12px 16px;
+}
+
+.mat-mdc-list-item:last-child {
+  border-bottom: none;
+}
+
+.mat-mdc-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Checkbox Improvements */
+.mat-mdc-checkbox {
+  margin-right: 12px;
+}
+
+/* Animation and Transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .mat-mdc-list-item {
+    min-height: 56px;
+    padding: 8px 12px;
+  }
+  
+  .mat-toolbar {
+    height: 56px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .mat-mdc-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 12px;
+  }
+  
+  .mat-mdc-checkbox {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
+
+/* Focus and Accessibility */
+.mat-mdc-button:focus,
+.mat-mdc-icon-button:focus,
+.mat-mdc-checkbox:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Loading and Empty States */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+
+.empty-state mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.pending {
+  background-color: var(--warning-color);
+}
+
+.status-indicator.completed {
+  background-color: var(--success-color);
+}
+
+.status-indicator.overdue {
+  background-color: var(--error-color);
+}

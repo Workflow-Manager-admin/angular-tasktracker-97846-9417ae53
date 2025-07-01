@@ -2,7 +2,7 @@ import "./chunk-ALFOF5OV.js";
 import {
   MatCommonModule,
   Platform
-} from "./chunk-2SOE2IZB.js";
+} from "./chunk-URTPB2EF.js";
 import {
   DOCUMENT
 } from "./chunk-QUFGTQRT.js";

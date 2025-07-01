@@ -1,6 +1,7 @@
+import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   MatCommonModule
-} from "./chunk-2SOE2IZB.js";
+} from "./chunk-WGQ7HNI6.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -14,7 +15,7 @@ import {
   ɵɵdefineComponent,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-QX2COTFA.js";
+} from "./chunk-K6L7TLVU.js";
 
 // node_modules/@angular/material/fesm2022/pseudo-checkbox-CJ7seqQH.mjs
 var MatPseudoCheckbox = class _MatPseudoCheckbox {
@@ -119,4 +120,4 @@ export {
   MatPseudoCheckbox,
   MatPseudoCheckboxModule
 };
-//# sourceMappingURL=chunk-MAXA7N55.js.map
+//# sourceMappingURL=chunk-CLDLAVGT.js.map

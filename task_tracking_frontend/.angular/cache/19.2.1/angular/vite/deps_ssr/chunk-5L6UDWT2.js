@@ -1,3 +1,4 @@
+import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   Platform,
   _CdkPrivateStyleLoader,
@@ -6,7 +7,7 @@ import {
   isFakeMousedownFromScreenReader,
   isFakeTouchstartFromScreenReader,
   normalizePassiveListenerOptions
-} from "./chunk-2SOE2IZB.js";
+} from "./chunk-WGQ7HNI6.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -23,10 +24,10 @@ import {
   ɵɵclassProp,
   ɵɵdefineComponent,
   ɵɵdefineDirective
-} from "./chunk-QX2COTFA.js";
+} from "./chunk-K6L7TLVU.js";
 import {
   __spreadValues
-} from "./chunk-S35MAB2V.js";
+} from "./chunk-YHCV7DAQ.js";
 
 // node_modules/@angular/material/fesm2022/structural-styles-BQUT6wsL.mjs
 var _StructuralStylesLoader = class __StructuralStylesLoader {
@@ -643,4 +644,4 @@ export {
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRipple
 };
-//# sourceMappingURL=chunk-TMDFHADU.js.map
+//# sourceMappingURL=chunk-5L6UDWT2.js.map

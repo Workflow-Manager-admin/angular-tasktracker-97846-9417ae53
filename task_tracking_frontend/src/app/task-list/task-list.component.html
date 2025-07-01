@@ -1,16 +1,69 @@
-<mat-list>
-  <mat-list-item *ngFor="let task of tasks; let i = index">
-    <mat-checkbox [checked]="task.completed" (change)="onToggleComplete(i)">
-    </mat-checkbox>
-    <span [class.completed]="task.completed" style="flex:1;margin-left:8px">
-      {{ task.title }}
-      <span *ngIf="task.dueDate"> - Due: {{ task.dueDate | date:'mediumDate' }}</span>
-    </span>
-    <button mat-icon-button color="warn" (click)="onDelete(i)" aria-label="Delete Task">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-list-item>
-  <mat-list-item *ngIf="tasks?.length === 0">
-    <span>No tasks yet.</span>
-  </mat-list-item>
-</mat-list>
+<div class="task-list-container">
+  <!-- Empty State -->
+  <div *ngIf="!tasks || tasks.length === 0" class="empty-state">
+    <mat-icon class="empty-icon">task_alt</mat-icon>
+    <h3>No tasks yet</h3>
+    <p>Create your first task to get started with tracking your progress!</p>
+  </div>
+
+  <!-- Task List -->
+  <mat-list *ngIf="tasks && tasks.length > 0" class="task-list">
+    <mat-list-item 
+      *ngFor="let task of tasks; let i = index; trackBy: trackByIndex"
+      class="task-item"
+      [class.completed-task]="task.completed"
+      [class.overdue-task]="isTaskOverdue(task)">
+      
+      <div class="task-content">
+        <!-- Checkbox -->
+        <mat-checkbox 
+          [checked]="task.completed" 
+          (change)="onToggleComplete(i)"
+          [color]="task.completed ? 'primary' : 'accent'"
+          class="task-checkbox">
+        </mat-checkbox>
+
+        <!-- Task Details -->
+        <div class="task-details">
+          <div class="task-title-row">
+            <span class="task-title" [class.completed]="task.completed">
+              {{ task.title }}
+            </span>
+            <div class="task-status">
+              <span class="status-indicator" 
+                    [class.completed]="task.completed"
+                    [class.pending]="!task.completed && !isTaskOverdue(task)"
+                    [class.overdue]="isTaskOverdue(task)">
+              </span>
+            </div>
+          </div>
+          
+          <div class="task-meta" *ngIf="task.dueDate">
+            <mat-icon class="meta-icon">calendar_today</mat-icon>
+            <span class="due-date" 
+                  [class.overdue]="isTaskOverdue(task)"
+                  [class.completed]="task.completed">
+              Due: {{ task.dueDate | date:'mediumDate' }}
+            </span>
+            <span *ngIf="isTaskOverdue(task) && !task.completed" class="overdue-badge">
+              Overdue
+            </span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="task-actions">
+          <button 
+            mat-icon-button 
+            color="warn" 
+            (click)="onDelete(i)" 
+            aria-label="Delete Task"
+            class="delete-button"
+            matTooltip="Delete task">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>

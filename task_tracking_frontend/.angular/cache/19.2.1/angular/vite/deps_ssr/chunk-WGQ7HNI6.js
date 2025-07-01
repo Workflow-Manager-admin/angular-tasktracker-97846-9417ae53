@@ -3454,9 +3454,10 @@ export {
   _IdGenerator,
   hasModifierKey,
   FocusKeyManager,
+  AriaDescriber,
   Directionality,
   BidiModule,
   MATERIAL_SANITY_CHECKS,
   MatCommonModule
 };
-//# sourceMappingURL=chunk-ULHCJY7N.js.map
+//# sourceMappingURL=chunk-WGQ7HNI6.js.map

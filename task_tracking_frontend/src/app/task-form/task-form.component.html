@@ -1,17 +1,56 @@
-<form [formGroup]="taskForm" (ngSubmit)="addTask()">
-  <mat-form-field appearance="outline" style="width:100%;">
-    <mat-label>Task Title</mat-label>
-    <input matInput formControlName="title" required>
-  </mat-form-field>
+<form [formGroup]="taskForm" (ngSubmit)="addTask()" class="task-form">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="title-field">
+      <mat-label>Task Title</mat-label>
+      <input 
+        matInput 
+        formControlName="title" 
+        placeholder="Enter your task title..."
+        maxlength="100"
+        required>
+      <mat-hint align="end">{{taskForm.get('title')?.value?.length || 0}}/100</mat-hint>
+      <mat-error *ngIf="taskForm.get('title')?.hasError('required')">
+        Task title is required
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline" style="width:100%;">
-    <mat-label>Due Date</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="dueDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="date-field">
+      <mat-label>Due Date (Optional)</mat-label>
+      <input 
+        matInput 
+        [matDatepicker]="picker" 
+        formControlName="dueDate"
+        placeholder="Select due date..."
+        readonly>
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-hint>Choose a due date to track deadlines</mat-hint>
+    </mat-form-field>
+  </div>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.valid">
-    Add Task
-  </button>
+  <div class="form-actions">
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit" 
+      [disabled]="!taskForm.valid || isSubmitting"
+      class="add-button">
+      <mat-icon>add</mat-icon>
+      <span>{{ isSubmitting ? 'Adding...' : 'Add Task' }}</span>
+    </button>
+    
+    <button 
+      mat-stroked-button 
+      type="button" 
+      (click)="resetForm()"
+      [disabled]="isSubmitting"
+      class="reset-button">
+      <mat-icon>refresh</mat-icon>
+      <span>Reset</span>
+    </button>
+  </div>
 </form>

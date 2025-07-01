@@ -36,6 +36,7 @@ export default [
         afterEach: "readonly",
         process: "readonly",
         console: "readonly",
+        window: "readonly",
       },
     },
     plugins: {

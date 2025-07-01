@@ -1,15 +1,54 @@
-<mat-toolbar color="primary">
-  <span>Task Tracker</span>
-</mat-toolbar>
+<div class="app-container">
+  <!-- Header -->
+  <mat-toolbar color="primary" class="app-header">
+    <mat-icon class="header-icon">task_alt</mat-icon>
+    <span class="header-title">Task Tracker</span>
+    <span class="spacer"></span>
+    <span class="task-count" *ngIf="(tasks$ | async)?.length as taskCount">
+      {{ taskCount }} {{ taskCount === 1 ? 'task' : 'tasks' }}
+    </span>
+  </mat-toolbar>
 
-<main style="display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem;">
-  <section style="width:100%;max-width:480px;">
-    <app-task-form (taskCreated)="onTaskCreated($event)"></app-task-form>
-    <div style="margin-top:2rem">
-      <app-task-list [tasks]="tasks$ | async"
-        (toggleComplete)="onToggleComplete($event)"
-        (delete)="onDelete($event)">
-      </app-task-list>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Task Form Section -->
+      <section class="task-form-section">
+        <mat-card class="form-card">
+          <mat-card-header>
+            <mat-card-title>Add New Task</mat-card-title>
+            <mat-card-subtitle>Create a new task to track your progress</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <app-task-form (taskCreated)="onTaskCreated($event)"></app-task-form>
+          </mat-card-content>
+        </mat-card>
+      </section>
+
+      <!-- Task List Section -->
+      <section class="task-list-section">
+        <div class="section-header">
+          <h2>Your Tasks</h2>
+          <div class="task-stats" *ngIf="(tasks$ | async)?.length as totalTasks">
+            <span class="stat-item">
+              <mat-icon>check_circle</mat-icon>
+              {{ getCompletedTasksCount() }} completed
+            </span>
+            <span class="stat-item">
+              <mat-icon>pending</mat-icon>
+              {{ totalTasks - getCompletedTasksCount() }} pending
+            </span>
+          </div>
+        </div>
+        
+        <div class="task-list-container">
+          <app-task-list 
+            [tasks]="tasks$ | async"
+            (toggleComplete)="onToggleComplete($event)"
+            (delete)="onDelete($event)">
+          </app-task-list>
+        </div>
+      </section>
     </div>
-  </section>
-</main>
+  </main>
+</div>
